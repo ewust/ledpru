@@ -1,4 +1,5 @@
 #include "resource_table_empty.h"
+#include "pru.h"
 #include <stdint.h>
 
 #define P9_31   0
@@ -10,7 +11,7 @@ uint8_t *shared_memory = (uint8_t*)(0x10000);
 
 // TODO: multiple channels/pins
 // E.g. ws281x(0xFF00FF, P9_31)
-void ws281x(uint32_t pixel, int pin)
+void write_ws281x(uint32_t pixel, int pin)
 {
     int i;
     for (i=0; i<24; i++) {
@@ -42,13 +43,25 @@ void ws281x_reset(int pin)
 
 void main(void)
 {
+    struct pru_ctrl *ctrl = (struct pru_ctrl *)shared_memory;
 
-    ws281x(0xFF0000, P9_31);
-    ws281x(0x00FF00, P9_31);
-    ws281x(0x0000FF, P9_31);
+    ctrl->state = PRU_STATE_IDLE;
+    ctrl->num_pixels = 0;
+    __R30 = 0;
 
-    ws281x_reset(P9_31);
+    while (1) {
+        while (ctrl->state == PRU_STATE_IDLE);
+
+        int i;
+        for (i=0; i<ctrl->num_pixels; i++) {
+            write_ws281x(ctrl->pixels[i], P9_31);
+        }
+
+        // Let user write while we block on the reset
+        ctrl->state = PRU_STATE_IDLE;
+
+        ws281x_reset(P9_31);
+    }
 
     __halt();
-
 }
