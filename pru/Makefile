@@ -24,7 +24,6 @@ config:
 	echo "stop" > $(PRU1)/state
 	echo "ledpru-fw" > $(PRU1)/firmware
 run:
-	echo "stop" > $(PRU1)/state
 	echo "start" > $(PRU1)/state
 stop:
 	echo "stop" > $(PRU1)/state
