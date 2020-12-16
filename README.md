@@ -31,7 +31,8 @@ config-pin P9_31 pruout
 
 Start the PRU driver:
 ```
-sudo make run  # just sends "start" to the rproc
+sudo make config    # Tells the kernel about our new firmware
+sudo make run       # just sends "start" to the rproc and starts our PRU program
 ```
 
 
@@ -41,7 +42,7 @@ cd ../
 make
 ```
 
-Maybe run a test pattern?
+Maybe run a test pattern if ya want
 ```
 make test
 sudo ./test
