@@ -63,5 +63,5 @@ void main(void)
         ws281x_reset(P9_31);
     }
 
-    __halt();
+    //__halt();
 }
