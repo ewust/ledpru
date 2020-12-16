@@ -5,7 +5,7 @@ WS2812 PRU driver, tested on Beaglebone Black kernel 4.19
 Since Beaglebone moved away from the PRU uio / kernel overlays, libraries
 like LEDscape no longer work.
 
-This library is a minimal working example tested on a PRU rproc kernel (4.19).
+This library is a minimal working example tested on a PRU rproc kernel (4.19). Currently, it only supports a single pin output (P9\_31), but could be easily extended to do multiple in parallel.
 
 
 ## Installing
