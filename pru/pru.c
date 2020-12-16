@@ -19,17 +19,17 @@ void ws281x(uint32_t pixel, int pin)
         __R30 |= (1 << pin);
 
         if (bit) {
-            __delay_cycles(240);    // T1H=1200ns
+            __delay_cycles(700/5);  // T1H=700ns
         } else {
-            __delay_cycles(100);    // T0H=500ns
+            __delay_cycles(350/5);  // T0H=350ns
         }
 
         __R30 &= ~(1 << pin);
 
         if (bit) {
-            __delay_cycles(260);    // T1L=1300ns
+            __delay_cycles(600/5);  // T1L=600ns
         } else {
-            __delay_cycles(400);    // T0L=2000ns
+            __delay_cycles(800/5);  // T0L=800ns
         }
     }
 }
