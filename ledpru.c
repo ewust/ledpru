@@ -13,7 +13,7 @@
 
 struct global {
     int             mem_fd;
-    struct pru_ctrl  *pru;
+    volatile struct pru_ctrl  *pru;
 };
 
 int init = 0;
