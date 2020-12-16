@@ -35,6 +35,9 @@ sudo make config    # Tells the kernel about our new firmware
 sudo make run       # just sends "start" to the rproc and starts our PRU program
 ```
 
+Plug in the LED strip you want to P9\_31 header pin on the Beaglebone.
+
+
 
 Build the ledpru userspace driver library
 ```
@@ -49,3 +52,7 @@ sudo ./test
 ```
 
 Happy hacking!
+
+TODO: support multiple channels. Should be able to get ~16 or so from each PRU. Probably
+use https://github.com/fyhertz/epilepsia if you want to get serious though. This is just a
+quick and dirty hack to get a single strand working.
